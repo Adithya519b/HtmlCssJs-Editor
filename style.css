@@ -1,0 +1,70 @@
+body{
+    background-color: rgba(30, 28, 28, 0.647);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    display: flex;
+}
+#output{
+    width: 100%;
+    height: 670px;
+    background-color: white;
+    border-radius: 10px;
+}
+#editbox{
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+
+}
+textarea{
+    width: 340px;
+    height: 330px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 2px solid white;
+    font-size: 18px;
+}
+.dark-mode{
+    background-color: rgba(67, 65, 65, 0.825) !important;
+    color:white !important;    
+}
+.display{
+    width: 100%;
+}
+button{
+    background-color: rgba(2, 109, 250, 0.729);
+    display: block;
+    padding: 5px;
+    min-width: 70px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    margin: 3px;
+    color:rgb(247, 246, 246);
+    font-size: 18px;
+    box-shadow: 2px 2px 4px rgb(11, 13, 13);
+
+}
+button:hover{
+    background-color: rgba(3, 35, 245, 0.832);
+    transition: all 400ms ease;
+}
+button:active{
+    transform: scale(0.9);
+    background-color:  rgba(4, 109, 246, 0.941);;
+    transition: all 400ms ease-in-out;
+}
+#html{
+    background-color: rgba(251, 190, 190, 0.774);
+}
+#css{
+    background-color: rgba(255, 255, 198, 0.982);
+}
+#js{
+    background-color: rgba(221, 247, 221, 0.892);
+    width: 95%;
+}
+.btns{
+    display: flex;
+
+}
