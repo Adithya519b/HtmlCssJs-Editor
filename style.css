@@ -12,12 +12,17 @@ body{
 }
 #editbox{
     display: flex;
-    flex-direction: row;
-    width: 95%;
+    flex-direction: column;
+    width: 100%;
 
 }
+#html-css{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 textarea{
-    width: 340px;
+    width: 50%;
     height: 330px;
     margin: 5px;
     border-radius: 5px;
@@ -28,8 +33,11 @@ textarea{
     background-color: rgba(67, 65, 65, 0.825) !important;
     color:white !important;    
 }
-.display{
-    width: 100%;
+.display1{
+    width: 50%;
+}
+.display2{
+    width: 48%;
 }
 button{
     background-color: rgba(2, 109, 250, 0.729);
@@ -56,9 +64,11 @@ button:active{
 }
 #html{
     background-color: rgba(251, 190, 190, 0.774);
+    width: 50%;
 }
 #css{
     background-color: rgba(255, 255, 198, 0.982);
+    width: 50%;
 }
 #js{
     background-color: rgba(221, 247, 221, 0.892);
