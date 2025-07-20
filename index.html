@@ -10,15 +10,21 @@
 <body>
     
     <div class="display1">
+         <div class="btns">
+        <button id="run">Run</button>
+        <button id="download">Download</button>
+        <button id="mode">Theme</button>
+        <button id="code">code</button>
+        </div>
          <div class="editbox">
-        <div id="html-css">
+        
         <textarea name="html" id="html" placeholder="html code"><h1>Hello Buddy!</h1>
 <h3 id="show"></h3></textarea>
         <textarea name="css" id="css" placeholder="css style">h1{
     color:orange;
 }
         </textarea>
-        </div>
+        
         <textarea name="js" id="js" placeholder="java Script">
     setInterval(()=>{
         let time=new Date();
@@ -27,17 +33,13 @@
         </textarea>
     </div>
     </div>
-    <div class="display2">
-        <div class="btns">
-        <button id="run">Run</button>
-        <button id="download">Download Code</button>
-        <button id="mode">Theme</button>
-        </div>
+    
+       
        
         <iframe id="output" frameborder="3"></iframe>
     
     
-    </div>
+    
    
     
 </body>

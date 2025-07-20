@@ -5,6 +5,8 @@ let html=document.getElementById('html').value;
 let css=document.getElementById('css').value;
 let js=document.getElementById('js').value;
 let output=document.getElementById('output')
+output.style.display="block";
+document.querySelector('.editbox').style.display="none"
 
  output.srcdoc=`
  <html>
@@ -18,6 +20,10 @@ let output=document.getElementById('output')
  </html>`
 }
 document.getElementById('run').addEventListener("click", display);
+document.getElementById('code').addEventListener("click", ()=>{
+  document.getElementById('output').style.display="none"
+  document.querySelector('.editbox').style.display=""
+});
 function downloadCode() {
   let html = document.getElementById('html').value;
   let css = document.getElementById('css').value;

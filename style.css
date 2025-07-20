@@ -2,29 +2,34 @@ body{
     background-color: rgba(30, 28, 28, 0.647);
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-    display: flex;
+    width: 100%;
+    margin: 0px;
+    scrollbar-width: 2px;
+    scrollbar-color: orange;
+    overflow-x:hidden;
+    overflow-y: scroll;
+    
 }
 #output{
     width: 100%;
     height: 670px;
+    display: none;
     background-color: white;
     border-radius: 10px;
 }
 #editbox{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
     width: 100%;
+    
 
 }
-#html-css{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
+
 textarea{
-    width: 50%;
-    height: 330px;
-    margin: 5px;
+    width: 30%;
+    height: 90vh;
+    margin: 3px;
     border-radius: 5px;
     border: 2px solid white;
     font-size: 18px;
@@ -34,10 +39,7 @@ textarea{
     color:white !important;    
 }
 .display1{
-    width: 50%;
-}
-.display2{
-    width: 48%;
+    width: 100%;
 }
 button{
     background-color: rgba(2, 109, 250, 0.729);
@@ -64,17 +66,46 @@ button:active{
 }
 #html{
     background-color: rgba(251, 190, 190, 0.774);
-    width: 50%;
+    
 }
 #css{
     background-color: rgba(255, 255, 198, 0.982);
-    width: 50%;
+    
 }
 #js{
     background-color: rgba(221, 247, 221, 0.892);
-    width: 95%;
+    
 }
 .btns{
     display: flex;
 
+}
+@media  screen and (max-width:800px){
+    #editbox{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    }
+    textarea{
+        width: 95%;
+        margin:1px;
+        font-size: 15px;
+        height: 60vh;
+    }
+    button{
+    background-color: rgba(2, 109, 250, 0.729);
+    display: block;
+    padding: 2px;
+    min-width: 50px;
+    height: 25px;
+    border-radius: 5px;
+    border: none;
+    margin: 2px;
+    color:rgb(247, 246, 246);
+    font-size: 13px;
+    box-shadow: 2px 2px 4px rgb(11, 13, 13);
+
+}
+
+    
 }
