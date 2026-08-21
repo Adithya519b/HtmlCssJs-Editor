@@ -1,111 +1,445 @@
-body{
-    background-color: rgba(30, 28, 28, 0.647);
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    width: 100%;
-    margin: 0px;
-    scrollbar-width: 2px;
-    scrollbar-color: orange;
-    overflow-x:hidden;
-    overflow-y: scroll;
-    
+
+/* =========================================
+   GLOBAL RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-#output{
+
+html,
+body {
     width: 100%;
-    height: 670px;
-    display: none;
-    background-color: white;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f5f7fb;
+    color: #1f2937;
+
+    padding: 20px;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.display1 {
+    width: 100%;
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 8px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================
+   BUTTON AREA
+========================================= */
+
+.btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 16px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.btns button {
+    min-height: 42px;
+
+    padding: 9px 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btns button:hover {
+    background: #1d4ed8;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(37, 99, 235, 0.25);
+}
+
+.btns button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================================
+   EDITOR CONTAINER
+========================================= */
+
+.editbox {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   CODE EDITORS
+========================================= */
+
+.editbox textarea {
+    width: 100%;
+
+    min-height: 420px;
+
+    padding: 16px;
+
+    resize: vertical;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    outline: none;
+
+    background: #111827;
+    color: #f9fafb;
+
+    font-family:
+        "Fira Code",
+        "Consolas",
+        "Courier New",
+        monospace;
+
+    font-size: 14px;
+    line-height: 1.6;
+
+    tab-size: 4;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.editbox textarea::placeholder {
+    color: #9ca3af;
+}
+
+.editbox textarea:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================
+   OUTPUT
+========================================= */
+
+#output {
+    display: block;
+
+    width: 100%;
+    max-width: 1400px;
+
+    height: 500px;
+
+    margin: 20px auto 0;
+
+    border: 2px solid #d1d5db;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .display1 {
+        padding: 15px;
+    }
+
+    .editbox {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .editbox textarea {
+        min-height: 350px;
+    }
+
+    /*
+       Make JavaScript editor occupy
+       the full second row
+    */
+
+    .editbox textarea:nth-child(3) {
+        grid-column: 1 / -1;
+    }
+
+    #output {
+        height: 450px;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .display1 {
+        padding: 12px;
+
+        border-radius: 12px;
+    }
+
+
+    /* Buttons */
+
+    .btns {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 8px;
+
+        margin-bottom: 12px;
+    }
+
+    .btns button {
+        width: 100%;
+
+        min-height: 44px;
+
+        padding: 8px 10px;
+
+        font-size: 13px;
+    }
+
+
+    /* Editors */
+
+    .editbox {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .editbox textarea {
+        width: 100%;
+
+        min-height: 260px;
+
+        height: 260px;
+
+        padding: 13px;
+
+        font-size: 13px;
+    }
+
+
+    /* Output */
+
+    #output {
+        width: 100%;
+
+        height: 420px;
+
+        margin-top: 12px;
+
+        border-radius: 10px;
+    }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+    body {
+        padding: 6px;
+    }
+
+    .display1 {
+        padding: 9px;
+
+        border-radius: 10px;
+    }
+
+
+    .btns {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 6px;
+    }
+
+    .btns button {
+        min-height: 42px;
+
+        font-size: 12px;
+
+        padding: 7px 5px;
+    }
+
+
+    .editbox textarea {
+        min-height: 230px;
+
+        height: 230px;
+
+        padding: 11px;
+
+        font-size: 12px;
+
+        line-height: 1.5;
+    }
+
+
+    #output {
+        height: 350px;
+
+        margin-top: 10px;
+    }
+}
+
+
+/* =========================================
+   EXTRA SMALL PHONES
+========================================= */
+
+@media (max-width: 320px) {
+
+    .btns {
+        grid-template-columns: 1fr;
+    }
+
+    .btns button {
+        width: 100%;
+    }
+
+    .editbox textarea {
+        min-height: 210px;
+        height: 210px;
+    }
+
+    #output {
+        height: 320px;
+    }
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.editbox textarea {
+    scrollbar-width: thin;
+    scrollbar-color: #4b5563 #111827;
+}
+
+.editbox textarea::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editbox textarea::-webkit-scrollbar-track {
+    background: #111827;
+}
+
+.editbox textarea::-webkit-scrollbar-thumb {
+    background: #4b5563;
     border-radius: 10px;
 }
-#editbox{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 100%;
-    
 
+.editbox textarea::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
 }
 
-textarea{
-    width: 30%;
-    height: 90vh;
-    margin: 3px;
-    border-radius: 5px;
-    border: 2px solid white;
-    font-size: 18px;
-}
-.dark-mode{
-    background-color: rgba(67, 65, 65, 0.825) !important;
-    color:white !important;    
-}
-.display1{
-    width: 100%;
-}
-button{
-    background-color: rgba(2, 109, 250, 0.729);
-    display: block;
-    padding: 5px;
-    min-width: 70px;
-    height: 25px;
-    border-radius: 5px;
-    border: none;
-    margin: 3px;
-    color:rgb(247, 246, 246);
-    font-size: 18px;
-    box-shadow: 2px 2px 4px rgb(11, 13, 13);
 
-}
-button:hover{
-    background-color: rgba(3, 35, 245, 0.832);
-    transition: all 400ms ease;
-}
-button:active{
-    transform: scale(0.9);
-    background-color:  rgba(4, 109, 246, 0.941);;
-    transition: all 400ms ease-in-out;
-}
-#html{
-    background-color: rgba(251, 190, 190, 0.774);
-    
-}
-#css{
-    background-color: rgba(255, 255, 198, 0.982);
-    
-}
-#js{
-    background-color: rgba(221, 247, 221, 0.892);
-    
-}
-.btns{
-    display: flex;
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
+button:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.25);
+    outline-offset: 2px;
 }
-@media  screen and (max-width:800px){
-    #editbox{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
     }
-    textarea{
-        width: 95%;
-        margin:1px;
-        font-size: 15px;
-        height: 60vh;
-    }
-    button{
-    background-color: rgba(2, 109, 250, 0.729);
-    display: block;
-    padding: 2px;
-    min-width: 50px;
-    height: 25px;
-    border-radius: 5px;
-    border: none;
-    margin: 2px;
-    color:rgb(247, 246, 246);
-    font-size: 13px;
-    box-shadow: 2px 2px 4px rgb(11, 13, 13);
-
 }
 
-    
-}
