@@ -443,3 +443,46 @@ textarea:focus-visible {
     }
 }
 
+
+/* =========================================
+   EDITOR LIGHT MODE
+========================================= */
+
+.editbox textarea {
+    background: #111827;
+    color: #f8fafc;
+
+    border: 1px solid #374151;
+}
+
+
+/* =========================================
+   EDITOR LIGHT THEME
+========================================= */
+
+.editbox textarea.dark-mode {
+    background: #f8fafc;
+    color: #111827;
+
+    border-color: #cbd5e1;
+}
+
+
+/* Placeholder */
+
+.editbox textarea.dark-mode::placeholder {
+    color: #64748b;
+}
+
+
+/* Focus */
+
+.editbox textarea.dark-mode:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+
