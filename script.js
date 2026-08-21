@@ -1,69 +1,270 @@
 
+function display() {
 
-function display(){
-let html=document.getElementById('html').value;
-let css=document.getElementById('css').value;
-let js=document.getElementById('js').value;
-let output=document.getElementById('output')
-output.style.display="block";
-document.querySelector('.editbox').style.display="none"
+    const html = document.getElementById("html").value;
+    const css = document.getElementById("css").value;
+    const js = document.getElementById("js").value;
 
- output.srcdoc=`
- <html>
- <head>
- <style>${css}</style>
- </head>
- <body>
- ${html}
- <script>${js}<\/script>
- </body>
- </html>`
+    const output = document.getElementById("output");
+    const editbox = document.querySelector(".editbox");
+
+    output.style.display = "block";
+    editbox.style.display = "none";
+
+    output.srcdoc = `
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <meta charset="UTF-8">
+
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            >
+
+            <style>
+                ${css}
+            </style>
+
+        </head>
+
+        <body>
+
+            ${html}
+
+            <script>
+                ${js}
+            <\/script>
+
+        </body>
+
+        </html>
+    `;
 }
-document.getElementById('run').addEventListener("click", display);
-document.getElementById('code').addEventListener("click", ()=>{
-  document.getElementById('output').style.display="none"
-  document.querySelector('.editbox').style.display=""
-});
+
+document
+    .getElementById("run")
+    .addEventListener("click", display);
+
+document
+    .getElementById("code")
+    .addEventListener("click", () => {
+
+        const output = document.getElementById("output");
+        const editbox = document.querySelector(".editbox");
+
+        output.style.display = "none";
+        editbox.style.display = "";
+
+    });
+
 function downloadCode() {
-  let html = document.getElementById('html').value;
-  let css = document.getElementById('css').value;
-  let js = document.getElementById('js').value;
 
-  let completeCode = `
-    <html>
-      <head>
-        <style>${css}</style>
-      </head>
-      <body>
-        ${html}
-        <script>${js}<\/script>
-      </body>
-    </html>
-  `;
+    const html = document.getElementById("html").value;
+    const css = document.getElementById("css").value;
+    const js = document.getElementById("js").value;
 
-  let blob = new Blob([completeCode], { type: 'text/html' });
-  let url = URL.createObjectURL(blob);
-  console.log(url)
 
-  let link = document.createElement('a');
-  link.href = url;
-  let filename=prompt("enter file name:");
-  link.download = `${filename}.html`;
-  link.click();
+    const completeCode = `
+<!DOCTYPE html>
 
-  URL.revokeObjectURL(url); // Clean up
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Web Page</title>
+
+    <style>
+
+        ${css}
+
+    </style>
+
+</head>
+
+<body>
+
+    ${html}
+
+    <script>
+
+        ${js}
+
+    <\/script>
+
+</body>
+
+</html>
+`;
+
+
+    const blob = new Blob(
+        [completeCode],
+        {
+            type: "text/html"
+        }
+    );
+
+
+    const url = URL.createObjectURL(blob);
+
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    let filename = prompt(
+        "Enter file name:"
+    );
+
+
+    /* Default filename */
+
+    if (!filename || filename.trim() === "") {
+
+        filename = "index";
+
+    }
+
+
+    /* Remove .html if user already entered it */
+
+    filename = filename.replace(
+        /\.html$/i,
+        ""
+    );
+
+
+    link.download = `${filename}.html`;
+
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+
+    /* Clean URL */
+
+    URL.revokeObjectURL(url);
 }
-document.getElementById('download').addEventListener("click", downloadCode);
-let editer=[document.getElementById('html'),
-  document.getElementById('css'),
-  document.getElementById('js')]
-let mode=document.getElementById('mode');
-mode.addEventListener("click",()=>{
-  editer.forEach(area=>{
-    area.classList.toggle('dark-mode');
-    console.log("mode")
-  })
+
+
+/* =========================================
+   DOWNLOAD BUTTON
+========================================= */
+
+document
+    .getElementById("download")
+    .addEventListener(
+        "click",
+        downloadCode
+    );
+
+
+/* =========================================
+   THEME TOGGLE
+========================================= */
+
+const editors = [
+
+    document.getElementById("html"),
+
+    document.getElementById("css"),
+
+    document.getElementById("js")
+
+];
+
+
+const mode = document.getElementById("mode");
+
+
+/*
+   Load saved theme
+*/
+
+const savedTheme =
+    localStorage.getItem("editorTheme");
+
+
+if (savedTheme === "dark") {
+
+    editors.forEach((area) => {
+
+        area.classList.add("dark-mode");
+
+    });
+
+    mode.textContent = "Light";
+
+} else {
+
+    mode.textContent = "Dark";
+
 }
-)
- 
+
+
+/*
+   Theme button
+*/
+
+mode.addEventListener("click", () => {
+
+    const isDark =
+        editors[0].classList.toggle(
+            "dark-mode"
+        );
+
+
+    /*
+       Apply same theme to all editors
+    */
+
+    editors.slice(1).forEach((area) => {
+
+        area.classList.toggle(
+            "dark-mode",
+            isDark
+        );
+
+    });
+
+
+    /*
+       Change button text
+    */
+
+    if (isDark) {
+
+        mode.textContent = "Light";
+
+        localStorage.setItem(
+            "editorTheme",
+            "dark"
+        );
+
+    } else {
+
+        mode.textContent = "Dark";
+
+        localStorage.setItem(
+            "editorTheme",
+            "light"
+        );
+
+    }
+
+});
 
